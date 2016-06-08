@@ -1,7 +1,7 @@
 1. Install docker CS with instructions from:
-    ```  
-    https://docs.docker.com/docker-trusted-registry/cs-engine/install/#install-on-ubuntu-14-04-lts
-    ```
+```  
+https://docs.docker.com/docker-trusted-registry/cs-engine/install/#install-on-ubuntu-14-04-lts
+```
 2. Setup up client verification to connect to it :
     1. Follow these steps to generate certs:
         https://github.nominum.com/nominum/kelpie/blob/master/doc/dockerhost.md
