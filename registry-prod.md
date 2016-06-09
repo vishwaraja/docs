@@ -21,6 +21,7 @@
         docker volume create ucp-controller-server-certs
     2. Place certificates under: ` /var/lib/docker/volumes/ucp-controller-server-certs/_data/`
 5. Start the UCP :
+    
     ```
     docker run --rm -it --name ucp -v /var/run/docker.sock:/var/run/docker.sock docker/ucp:1.1.1 install -i --host-address vish.ddns.nominum.com --controller-port 444 --admin-password admin1  --fresh-install --debug
     ```
