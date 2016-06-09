@@ -23,7 +23,7 @@
 5. Start the UCP :
     
     ```
-    docker run --rm -it --name ucp -v /var/run/docker.sock:/var/run/docker.sock docker/ucp:1.1.1 install -i --host-address vish.ddns.nominum.com --controller-port 444 --admin-password admin1  --fresh-install --debug
+    sudo docker run --rm -it --name ucp -v /var/run/docker.sock:/var/run/docker.sock docker/ucp:1.1.1 install -i --host-address 64.89.226.209 --controller-port 444 --admin-password admin1 --external-server-cert  --fresh-install --debug
     ```
 6. Check if UCP is up and running.
 7. Set up license in UCP and LDAP:
