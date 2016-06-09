@@ -87,11 +87,16 @@
     }
     ```
     Note: Allow the load balancer to run on 80 and 443
+9. Make ssl certs for nginx:
 
-9. start the nginx-load balancer:
+	```
+	sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /home/vish/nginx/nginx.key -out /home/vish/nginx/nginx.crt
+	```
+
+10. start the nginx-load balancer:
     docker run --name mynginx1 -v /home/vish/nginx/conf:/etc/nginx/nginx.conf:ro -p 443:443 -p 80:80  -d nginx
 
-10. Install DTR:
+11. Install DTR:
     1. Get the certificates used by UCP:
        `curl -k https://$UCP_HOST/ca > ucp-ca.pem`
     2. Launch up the docker registry:
@@ -100,13 +105,13 @@
     docker run -it --rm docker/dtr install --debug --ucp-url vish.ddns.nominum.com:444 --ucp-node vish.ddns.nominum.com --ucp-username admin --ucp-password admin1 --ucp-ca "$(cat ucp-ca.pem)" --dtr-external-url vish.ddns.nominum.com:443 --replica-http-port "8085" --replica-https-port "445"
     ```
     Note: --dtr-external-url should have the load balancer
-11. Install DTR replica1:
+12. Install DTR replica1:
 
     ``` 
     docker run -it --rm docker/dtr join --ucp-url vish.ddns.nominum.com  --ucp-node vish.ddns.nominum.com --existing-replica-id b0744db9792a --ucp-username admin --ucp-password admin1 --ucp-ca "$(cat ucp-ca.pem)" --replica-http-port "8086" --replica-https-port "446"
     ```
 
-12. Install DTR replica2:
+13. Install DTR replica2:
 
   ```
   docker run -it --rm docker/dtr join --ucp-url vish.ddns.nominum.com  --ucp-node vish.ddns.nominum.com --existing-replica-id b0744db9792a --ucp-username admin --ucp-password admin1 --ucp-ca "$(cat ucp-ca.pem)" --replica-http-port "8087" --replica-https-port "447"
