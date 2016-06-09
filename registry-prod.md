@@ -94,7 +94,10 @@
 	```
 
 10. start the nginx-load balancer:
-    docker run --name mynginx1 -v /home/vish/nginx/conf:/etc/nginx/nginx.conf:ro -p 443:443 -p 80:80  -d nginx
+ 
+    ```	
+    docker run --name mynginx1 -v /home/vish/nginx/conf:/etc/nginx/nginx.conf:ro -v /home/vish/nginx/nginx.crt:/etc/nginx/ssl/nginx.crt -v /home/vish/nginx/nginx.key:/etc/nginx/ssl/nginx.key -p 443:443 -p 80:80 -d nginx
+    ```
 
 11. Install DTR:
     1. Get the certificates used by UCP:
